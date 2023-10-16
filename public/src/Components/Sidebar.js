@@ -5,9 +5,11 @@ import { FiTrash2 } from "react-icons/fi";
 import CartItem from "./CartItem";
 
 import { SidebarContext } from "../Contexts/SidebarContext";
+import { CartContext } from "../Contexts/CartContext";
 
 function Sidebar() {
   const { isOpen, handleClose } = useContext(SidebarContext);
+  
 
   return (
     <div
