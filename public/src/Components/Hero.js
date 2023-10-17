@@ -20,7 +20,7 @@ function Hero () {
                 {/* title */}
                <div className="w-[120px] h-[180px]"></div>
                 
-                <Link className="text-white self-start flex items-center justify-center uppercase font-semibold border-b-2 border-primary ml-6 lg:ml-[330px] xl:ml-[480px]"  to={"/"}>
+                <Link className="text-white self-start flex items-center justify-center uppercase font-semibold border-b-2 border-primary ml-6 lg:ml-[330px] xl:ml-[480px] cursor-pointer"  to={"/"}>
                     Discover More
                 </Link>
                 </div>

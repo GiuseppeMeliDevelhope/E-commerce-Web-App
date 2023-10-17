@@ -5,6 +5,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
 import Footer from "./Components/Footer";
+import PaymentMethod from "./pages/Payment";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/product/:id" element={<ProductDetails />}/>
+          <Route path="/checkout" element={<PaymentMethod />}/>
         </Routes>
         <Sidebar />
         <Footer />
