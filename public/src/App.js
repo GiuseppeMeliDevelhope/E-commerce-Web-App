@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
@@ -9,6 +9,8 @@ import PaymentMethod from "./pages/Payment";
 
 
 function App() {
+
+
   return (
     <>
     <div className="overflow-hidden">
