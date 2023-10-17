@@ -29,7 +29,7 @@ function Header() {
       {/* cart */}
       
       <div className="cursor-pointer flex relative" onClick={() => setIsOpen(!isOpen)}>
-        <BsBag className="text-2xl" />
+        <BsBag className={`${isActive ? 'text-black text-3xl' : 'text-white text-3xl'}  `} />
         <div className="bg-yellow-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">{itemAmount}</div>
       </div>
       </div>
