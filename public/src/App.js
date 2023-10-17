@@ -6,6 +6,8 @@ import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
 import Footer from "./Components/Footer";
 import PaymentMethod from "./pages/Payment";
+import PaymentOnDelivery from "./pages/PaymentOnDelivery";
+
 
 
 function App() {
@@ -20,6 +22,9 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/product/:id" element={<ProductDetails />}/>
           <Route path="/checkout" element={<PaymentMethod />}/>
+          <Route path="/payment" element={<PaymentOnDelivery />}/>
+          
+        
         </Routes>
         <Sidebar />
         <Footer />
