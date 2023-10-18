@@ -14,7 +14,83 @@ function PaymentMethod() {
     <>
       {loading && <Loader />}
       {
-        <div className="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
+        <div className="min-w-screen min-h-screen bg-gray-200 flex flex-col items-center justify-center px-5 pb-10 gap-[80px] pt-16">
+           <div className="flex flex-col  items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+              <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
+                <div className="relative">
+                  <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">
+                    <li className="flex items-center space-x-3 text-left sm:space-x-4">
+                      <a
+                        className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-200 text-xs font-semibold text-emerald-700"
+                        href="/"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </a>
+                      <span className="font-semibold text-gray-900">Shop</span>
+                    </li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                    <li className="flex items-center space-x-3 text-left sm:space-x-4">
+                    <a
+                        className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-600 text-xs font-semibold text-white ring ring-gray-600 ring-offset-2"
+                        href="/"
+                      >
+                        
+                        2
+                      </a>
+                      <span className="font-semibold text-gray-900">
+                        Shipping
+                      </span>
+                    </li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                    <li className="flex items-center space-x-3 text-left sm:space-x-4">
+                    <a class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-400 text-xs font-semibold text-white" href="/">3</a>
+                      <span className="font-semibold text-gray-500">
+                        Payment
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           <div
             className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700"
             style={{ maxWidth: "600px" }}
@@ -146,7 +222,7 @@ function PaymentMethod() {
             </div>
             
             <div>
-                <Link to="/finalpay">
+                <Link to="/shipping">
               <button className="block w-full max-w-xs mx-auto bg-yellow-500 hover:bg-yellow-700 focus:bg-yellow-700 text-white rounded-lg px-3 py-3 font-semibold">
                     <BsLock className="absolute ml-[80px] mt-1 " /> PAY NOW
               </button>

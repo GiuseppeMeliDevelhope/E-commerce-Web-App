@@ -8,6 +8,7 @@ import Footer from "./Components/Footer";
 import PaymentMethod from "./pages/Payment";
 import PaymentOnDelivery from "./pages/PaymentOnDelivery";
 import FinalPayment from "./pages/FinalPayment";
+import ShippingCard from "./pages/ShippingCard";
 
 
 
@@ -23,9 +24,12 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/product/:id" element={<ProductDetails />}/>
           <Route path="/checkout" element={<PaymentMethod />}/>
-          <Route path="/payment" element={<PaymentOnDelivery />}/>
-          <Route path="/finalpay" element={<FinalPayment />}/>
           
+          <Route path="/payment" element={<PaymentOnDelivery />}/>
+          
+          <Route path="/finalpay/:method" element={<FinalPayment />}/>
+          <Route path="/shipping" element={<ShippingCard />}/>
+         
         
         </Routes>
         <Sidebar />
