@@ -13,46 +13,31 @@ import CartProvider from "./Contexts/CartContext";
 import SidebarProvider from "./Contexts/SidebarContext";
 import ThankYou from "./pages/ThankYou";
 
-
-
 function App() {
-  
-
   return (
     <>
-    <div className="overflow-hidden">
-      <SidebarProvider>
-      <CartProvider>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/product/:id" element={<ProductDetails />}/>
-          <Route path="/checkout" element={<PaymentMethod />}/>
+      <div className="overflow-hidden">
+        <SidebarProvider>
+          <CartProvider>
+            <Router>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="/checkout" element={<PaymentMethod />} />
 
-          <Route path="/payment" element={<PaymentOnDelivery />}/>
-          
-          <Route path="/finalpay/:method" element={<FinalPayment />}/>
-          <Route path="/shipping" element={<ShippingCard />}/>
-          <Route path="/thankyou" element={<ThankYou />}/>
-        
-        </Routes>
-        <Sidebar />
-        <Footer />
-      </Router>
+                <Route path="/payment" element={<PaymentOnDelivery />} />
 
-      </CartProvider>
-      </SidebarProvider>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    </div>
+                <Route path="/finalpay/:method" element={<FinalPayment />} />
+                <Route path="/shipping" element={<ShippingCard />} />
+                <Route path="/thankyou" element={<ThankYou />} />
+              </Routes>
+              <Sidebar />
+              <Footer />
+            </Router>
+          </CartProvider>
+        </SidebarProvider>
+      </div>
     </>
   );
 }

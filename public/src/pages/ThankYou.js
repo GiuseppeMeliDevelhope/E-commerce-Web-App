@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loader from "../Components/Loader";
 import { BsArrowBarRight } from "react-icons/bs";
+import { CartContext } from "../Contexts/CartContext";
 
 function ThankYou() {
   const [loading, setLoading] = useState(true);
@@ -9,6 +10,11 @@ function ThankYou() {
   const searchParams = new URLSearchParams(location.search);
   const source = searchParams.get("source");
   const estimatedDeliveryDate = searchParams.get("estimatedDate");
+  const { clearCart } = useContext(CartContext);
+
+  const handleContinueShopping = () => {
+    clearCart();
+  };
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 5000);
@@ -44,6 +50,7 @@ function ThankYou() {
 
               <div class=" py-10 text-center">
                 <Link
+                  onClick={handleContinueShopping}
                   to="/"
                   class="px-12 flex flex-row justify-center items-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3"
                 >

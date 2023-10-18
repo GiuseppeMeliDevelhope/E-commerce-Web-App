@@ -34,15 +34,18 @@ function Header() {
             />
           </div>
         </Link>
-       
-       <div className="flex items-center">
-        <Link to={"/"}>
-       <h1 className={`${isActive ? "hidden" : "text-white"} underline text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0 cursor-pointer`}>
-        The Level Group
-       </h1>
-       </Link>
-       </div>
-       
+
+        <div className="flex items-center">
+          <Link to={"/"}>
+            <h1
+              className={`${
+                isActive ? "hidden" : "text-white"
+              } underline text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0 cursor-pointer`}
+            >
+              The Level Group
+            </h1>
+          </Link>
+        </div>
 
         {/* cart */}
 

@@ -63,7 +63,6 @@ function FinalPayment() {
     }
   };
 
-
   const estimatedDeliveryDate = calculateEstimatedDeliveryDate(method);
 
   const productsInCart = products.filter((product) =>

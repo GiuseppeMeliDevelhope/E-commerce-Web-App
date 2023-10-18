@@ -9,12 +9,12 @@ import { useLocation } from "react-router-dom";
 
 function Sidebar() {
   const { isOpen, handleClose, handleOpen } = useContext(SidebarContext);
-  const { cart, clearCart, total, itemAmount,calculateDiscount } = useContext(CartContext);
+  const { cart, clearCart, total, itemAmount, calculateDiscount } =
+    useContext(CartContext);
   const [discountMessage, setDiscountMessage] = useState(false);
 
-
   const location = useLocation();
-  const discount = calculateDiscount(cart); 
+  const discount = calculateDiscount(cart);
 
   useEffect(() => {
     handleClose();
@@ -26,16 +26,18 @@ function Sidebar() {
         "The cart is empty. Add items to your cart before checkout."
       );
     }
-  }
+  };
 
   const handleDiscount = () => {
     if (cart.length === 0) {
-      window.alert("The cart is empty. Add items to your cart before checkout.");
+      window.alert(
+        "The cart is empty. Add items to your cart before checkout."
+      );
     } else {
       // Check if a discount is applied
       if (discount > 0) {
         setDiscountMessage(true);
-  
+
         // Reset the discount message after 3 seconds (adjust the time as needed)
         setTimeout(() => {
           setDiscountMessage(false);
@@ -43,7 +45,6 @@ function Sidebar() {
       }
     }
   };
-  
 
   return (
     <div
@@ -51,7 +52,7 @@ function Sidebar() {
         isOpen ? "right-0" : "-right-full"
       }   w-full bg-white fixed top-0 h-full shadow-2xl md:w-[40vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px]  `}
     >
-       {discountMessage && (
+      {discountMessage && (
         <div className="bg-green-500 text-white p-2 text-center">
           Discount applied! You saved {parseFloat(discount).toFixed(2)}€.
         </div>
@@ -78,7 +79,7 @@ function Sidebar() {
           {/* total */}
           <div className="uppercase font-semibold">
             <span className="mr-2">Total:</span>
-            {parseFloat(total-discount).toFixed(2)}€
+            {parseFloat(total - discount).toFixed(2)}€
           </div>
           {discount > 0 && (
             <div className="uppercase font-semibold">
