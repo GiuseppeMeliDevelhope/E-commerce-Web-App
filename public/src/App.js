@@ -11,6 +11,7 @@ import FinalPayment from "./pages/FinalPayment";
 import ShippingCard from "./pages/ShippingCard";
 import CartProvider from "./Contexts/CartContext";
 import SidebarProvider from "./Contexts/SidebarContext";
+import ThankYou from "./pages/ThankYou";
 
 
 
@@ -33,7 +34,7 @@ function App() {
           
           <Route path="/finalpay/:method" element={<FinalPayment />}/>
           <Route path="/shipping" element={<ShippingCard />}/>
-         
+          <Route path="/thankyou" element={<ThankYou />}/>
         
         </Routes>
         <Sidebar />

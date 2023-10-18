@@ -3,6 +3,7 @@ import Loader from "../Components/Loader";
 import { CartContext } from "../Contexts/CartContext";
 import { ProductContext } from "../Contexts/ProductContext";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 function FinalPayment() {
   const { products } = useContext(ProductContext);
@@ -10,7 +11,7 @@ function FinalPayment() {
   const { total } = useContext(CartContext);
   const [loading, setLoading] = useState(true);
   const [showPopUp, setShowPopUp] = useState(false);
-  const { method } = useParams(); 
+  const { method } = useParams();
 
   const openPopUp = () => {
     setShowPopUp(true);
@@ -20,13 +21,26 @@ function FinalPayment() {
     setShowPopUp(false);
   };
 
+  const calculateDiscount = (cart) => {
+    if (!cart) {
+      return 0;
+    }
+    if (cart.length >= 3) {
+      const sortedCart = [...cart].sort((a, b) => a.price - b.price);
+      const discount = sortedCart[0].price + sortedCart[1].price;
+      if (total >= 1000 && cart.length >= 3) {
+        return discount;
+      }
+    }
+    return 0;
+  };
 
   const calculateTotal = () => {
-    let newTotal = total;
+    let newTotal = total - calculateDiscount(cart);
     if (method === "payment") {
       newTotal += 10.0;
-    };
-    return newTotal.toFixed(2)
+    }
+    return newTotal.toFixed(2);
   };
 
   useEffect(() => {
@@ -175,22 +189,22 @@ function FinalPayment() {
                 <p className="mt-8 text-lg font-medium">Shipping Methods</p>
                 <form className="mt-5 grid gap-6">
                   <div className="relative">
-                  {method === 'payment' ? (
-                    <input
-                      className="peer hidden"
-                      id="radio_1"
-                      type="radio"
-                      name="radio"
-                      checked
-                    />
+                    {method === "payment" ? (
+                      <input
+                        className="peer hidden"
+                        id="radio_1"
+                        type="radio"
+                        name="radio"
+                        checked
+                      />
                     ) : (
                       <input
-                      className="peer hidden"
-                      id="radio_1"
-                      type="radio"
-                      name="radio"
-                      disabled
-                    />
+                        className="peer hidden"
+                        id="radio_1"
+                        type="radio"
+                        name="radio"
+                        disabled
+                      />
                     )}
                     <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                     <label
@@ -212,23 +226,23 @@ function FinalPayment() {
                     </label>
                   </div>
                   <div className="relative">
-                  {method === 'shipping' ? (
-                    <input
-                      className="peer hidden"
-                      id="radio_2"
-                      type="radio"
-                      name="radio"
-                      checked
-                    />
-                  ):(
-                    <input
-                    className="peer hidden"
-                    id="radio_2"
-                    type="radio"
-                    name="radio"
-                    disabled
-                  />
-                  )}
+                    {method === "shipping" ? (
+                      <input
+                        className="peer hidden"
+                        id="radio_2"
+                        type="radio"
+                        name="radio"
+                        checked
+                      />
+                    ) : (
+                      <input
+                        className="peer hidden"
+                        id="radio_2"
+                        type="radio"
+                        name="radio"
+                        disabled
+                      />
+                    )}
                     <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                     <label
                       className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
@@ -280,11 +294,24 @@ function FinalPayment() {
                       {parseFloat(total).toFixed(2)}€
                     </p>
                   </div>
+                  {calculateDiscount(cart) > 0 && ( // Verifica se c'è uno sconto applicato
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm font-medium text-gray-900">
+                        Discount
+                      </p>
+                      <p className="font-semibold text-red-600">
+                        -{parseFloat(calculateDiscount(cart)).toFixed(2)}€
+                      </p>
+                    </div>
+                  )}
+
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-medium text-gray-900">
                       Shipping
                     </p>
-                    <p className="font-semibold text-gray-900">+{method === "payment" ? "10.00" : "0.00"}€</p>
+                    <p className="font-semibold text-gray-900">
+                      +{method === "payment" ? "10.00" : "0.00"}€
+                    </p>
                   </div>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
@@ -292,7 +319,7 @@ function FinalPayment() {
                     Total
                   </p>
                   <p className="text-2xl mb-5 font-semibold text-gray-900">
-                  {calculateTotal()}€
+                    {calculateTotal()}€
                   </p>
                 </div>
               </div>
@@ -307,9 +334,9 @@ function FinalPayment() {
               {showPopUp && (
                 <div className="fixed flex justify-center items-center bottom-5  left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                   <div className="relative w-full max-w-2xl max-h-full">
-                    <div className="flex flex-col justify-center items-centerrelative bg-white rounded-lg shadow dark:bg-gray-900 ">
+                    <div className="flex flex-col justify-center items-centerrelative bg-gray-700 rounded-lg shadow dark:bg-gray-900 ">
                       <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                        <h3 className=" flex justify-centertext-xl font-semibold text-gray-900 dark:text-white ">
+                        <h3 className=" flex justify-centertext-xl font-semibold text-black dark:text-white ">
                           Are you sure you want to proceed and succesfully
                           complete the payment?
                         </h3>
@@ -322,24 +349,26 @@ function FinalPayment() {
                           className="w-[200px] mt-5 mb-5 mr-8 "
                         />
                         <div className="font-semibold text-[25px]">
-                          {total}€
+                          {parseFloat(total).toFixed(2)}€
                         </div>
                       </div>
 
                       <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <button
-                          type="button"
-                          className="text-white bg-gray-900  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white dark:text-black "
-                        >
-                          I accept
-                        </button>
-                        <button
-                          type="button"
-                          className="text-gray-500 bg-white hover:bg-red-600 focus:ring-4 focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-gray-600"
-                          onClick={closePopUp}
-                        >
-                          Decline
-                        </button>
+                        <Link to="/thankyou">
+                          <button
+                            type="button"
+                            className="text-white bg-gray-900  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white dark:text-black "
+                          >
+                            I accept
+                          </button>
+                          <button
+                            type="button"
+                            className="text-gray-500 bg-white hover:bg-red-600 focus:ring-4 focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-gray-600"
+                            onClick={closePopUp}
+                          >
+                            Decline
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </div>

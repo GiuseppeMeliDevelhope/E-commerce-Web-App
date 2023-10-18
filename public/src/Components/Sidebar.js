@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 import CartItem from "./CartItem";
@@ -10,9 +10,11 @@ import { useLocation } from "react-router-dom";
 function Sidebar() {
   const { isOpen, handleClose, handleOpen } = useContext(SidebarContext);
   const { cart, clearCart, total, itemAmount,calculateDiscount } = useContext(CartContext);
+  const [discountMessage, setDiscountMessage] = useState(false);
+
 
   const location = useLocation();
-  const discount = calculateDiscount(cart, total); 
+  const discount = calculateDiscount(cart); 
 
   useEffect(() => {
     handleClose();
@@ -26,12 +28,34 @@ function Sidebar() {
     }
   }
 
+  const handleDiscount = () => {
+    if (cart.length === 0) {
+      window.alert("The cart is empty. Add items to your cart before checkout.");
+    } else {
+      // Check if a discount is applied
+      if (discount > 0) {
+        setDiscountMessage(true);
+  
+        // Reset the discount message after 3 seconds (adjust the time as needed)
+        setTimeout(() => {
+          setDiscountMessage(false);
+        }, 3000);
+      }
+    }
+  };
+  
+
   return (
     <div
       className={`${
         isOpen ? "right-0" : "-right-full"
       }   w-full bg-white fixed top-0 h-full shadow-2xl md:w-[40vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px]  `}
     >
+       {discountMessage && (
+        <div className="bg-green-500 text-white p-2 text-center">
+          Discount applied! You saved {parseFloat(discount).toFixed(2)}€.
+        </div>
+      )}
       <div className="flex items-center justify-between py-6 border-b">
         <div className="uppercase text-sm font-semibold">
           Shopping Bag ({itemAmount})

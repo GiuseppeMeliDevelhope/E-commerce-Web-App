@@ -93,6 +93,9 @@ const decreaseAmount = (id) => {
 
 
    function calculateDiscount(cart) {
+    if (!cart) {
+      return 0; 
+    }
     if (cart.length >= 3) {
       const sortedCart = [...cart].sort((a, b) => a.price - b.price);
       const discount = sortedCart[0].price + sortedCart[1].price;
@@ -102,7 +105,11 @@ const decreaseAmount = (id) => {
     }
     return 0;
   }
+  
 
+
+
+  
   
     return (
     <CartContext.Provider value={{cart, addToCart, removeFromCart, clearCart, increaseAmount, decreaseAmount, itemAmount, total, calculateDiscount}}>
