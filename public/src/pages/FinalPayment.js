@@ -47,7 +47,24 @@ function FinalPayment() {
     setTimeout(() => setLoading(false), 2000);
   }, []);
 
-  const { title, price, description, image } = products;
+  const calculateEstimatedDeliveryDate = () => {
+    if (method === "shipping") {
+      const currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() + 2);
+      const estimatedDate = new Date(currentDate);
+      estimatedDate.setDate(estimatedDate.getDate() + 4);
+      return estimatedDate.toDateString();
+    } else if (method === "payment") {
+      const currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() + 7);
+      const estimatedDate = new Date(currentDate);
+      estimatedDate.setDate(estimatedDate.getDate() + 11);
+      return estimatedDate.toDateString();
+    }
+  };
+
+
+  const estimatedDeliveryDate = calculateEstimatedDeliveryDate(method);
 
   const productsInCart = products.filter((product) =>
     cart.find((item) => item.id === product.id)
@@ -334,9 +351,9 @@ function FinalPayment() {
               {showPopUp && (
                 <div className="fixed flex justify-center items-center bottom-5  left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                   <div className="relative w-full max-w-2xl max-h-full">
-                    <div className="flex flex-col justify-center items-centerrelative bg-gray-700 rounded-lg shadow dark:bg-gray-900 ">
+                    <div className="flex flex-col justify-center items-centerrelative bg-gray-900 rounded-lg shadow dark:bg-gray-900 ">
                       <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                        <h3 className=" flex justify-centertext-xl font-semibold text-black dark:text-white ">
+                        <h3 className="mt-4 flex justify-centertext-xl font-semibold text-white dark:text-white mb-2 ">
                           Are you sure you want to proceed and succesfully
                           complete the payment?
                         </h3>
@@ -348,27 +365,30 @@ function FinalPayment() {
                           alt="img"
                           className="w-[200px] mt-5 mb-5 mr-8 "
                         />
-                        <div className="font-semibold text-[25px]">
+                        <div className="font-semibold text-white text-[25px]">
                           {parseFloat(total).toFixed(2)}€
                         </div>
                       </div>
 
-                      <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                        <Link to="/thankyou">
+                      <div className="flex items-center p-6 space-x-2  border-gray-200 rounded-b dark:border-gray-600">
+                        <Link
+                          to={`/thankyou?source=${method}&estimatedDate=${estimatedDeliveryDate}`}
+                          className="px-12 flex flex-row justify-center items-center  text-white font-semibold py-3"
+                        >
                           <button
                             type="button"
-                            className="text-white bg-gray-900  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white dark:text-black "
+                            className="text-white bg-green-400  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white dark:text-black "
                           >
                             I accept
                           </button>
-                          <button
-                            type="button"
-                            className="text-gray-500 bg-white hover:bg-red-600 focus:ring-4 focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-gray-600"
-                            onClick={closePopUp}
-                          >
-                            Decline
-                          </button>
                         </Link>
+                        <button
+                          type="button"
+                          className="text-gray-500 bg-white hover:bg-red-600 focus:ring-4 focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-gray-600"
+                          onClick={closePopUp}
+                        >
+                          Decline
+                        </button>
                       </div>
                     </div>
                   </div>
