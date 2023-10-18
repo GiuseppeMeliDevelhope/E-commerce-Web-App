@@ -10,6 +10,7 @@ import PaymentOnDelivery from "./pages/PaymentOnDelivery";
 import FinalPayment from "./pages/FinalPayment";
 import ShippingCard from "./pages/ShippingCard";
 import CartProvider from "./Contexts/CartContext";
+import SidebarProvider from "./Contexts/SidebarContext";
 
 
 
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
     <div className="overflow-hidden">
+      <SidebarProvider>
       <CartProvider>
       <Router>
         <Header />
@@ -39,6 +41,7 @@ function App() {
       </Router>
 
       </CartProvider>
+      </SidebarProvider>
 
     
     

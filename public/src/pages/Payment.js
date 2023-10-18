@@ -35,7 +35,7 @@ function PaymentMethod() {
       {loading && <Loader />}
       {
         <div className="min-w-screen min-h-screen bg-gray-200 flex flex-col items-center justify-center px-5 pb-10 gap-[80px] pt-16">
-           <div className="flex flex-col  items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+           <div className="flex flex-col pl-4 pr-4 pb-5 items-center border-b bg-white py-4 sm:flex-row sm:px-10  lg:px-20 xl:px-32">
               <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
                 <div className="relative">
                   <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">

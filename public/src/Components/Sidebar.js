@@ -1,21 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { SidebarContext } from "../Contexts/SidebarContext";
 import { CartContext } from "../Contexts/CartContext";
+import { useLocation } from "react-router-dom";
 
 function Sidebar() {
-  const { isOpen, handleClose } = useContext(SidebarContext);
+  const { isOpen, handleClose, handleOpen } = useContext(SidebarContext);
   const { cart, clearCart, total, itemAmount } = useContext(CartContext);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    handleClose();
+  }, [location]);
 
   const handleCheckout = () => {
     if (cart.length === 0) {
-      window.alert("The cart is empty. Add items to your cart before checkout.");
+      window.alert(
+        "The cart is empty. Add items to your cart before checkout."
+      );
     }
-  };
-
+  }
 
   return (
     <div
@@ -24,7 +32,9 @@ function Sidebar() {
       }   w-full bg-white fixed top-0 h-full shadow-2xl md:w-[40vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px]  `}
     >
       <div className="flex items-center justify-between py-6 border-b">
-        <div className="uppercase text-sm font-semibold">Shopping Bag ({itemAmount})</div>
+        <div className="uppercase text-sm font-semibold">
+          Shopping Bag ({itemAmount})
+        </div>
         {/* icon} */}
         <div
           onClick={handleClose}
@@ -53,7 +63,12 @@ function Sidebar() {
             <FiTrash2 />
           </div>
         </div>
-        <Link to="/" className="bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium">View cart</Link>
+        <Link
+          to="/"
+          className="bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium"
+        >
+          View cart
+        </Link>
         <Link
           to={cart.length === 0 ? "#" : "/checkout"}
           className={`${
@@ -61,8 +76,8 @@ function Sidebar() {
           } flex p-4 justify-center items-center text-white w-full font-medium`}
           onClick={handleCheckout}
         >
-         Checkout
-         </Link>
+          Checkout
+        </Link>
       </div>
     </div>
   );

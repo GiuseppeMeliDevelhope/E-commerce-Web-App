@@ -14,7 +14,7 @@ root.render(
   <CartProvider>
    <ProductProvider>
     <React.StrictMode>
-    <App />
+     <App />
   </React.StrictMode>
   </ProductProvider>
   </CartProvider>
