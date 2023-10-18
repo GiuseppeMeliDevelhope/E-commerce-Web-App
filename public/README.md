@@ -1,5 +1,9 @@
 Name: Giuseppe Meli
 Date: 15/02/2020
+start the app: cd public /
+              npm start
+server: cd server/
+       npm run dev
 
 functions added:
 1.server created,api calls all products: img, description, title, price, category,id. Loadin Screen from the payment section on, until the thank you section. Full-responisve .
