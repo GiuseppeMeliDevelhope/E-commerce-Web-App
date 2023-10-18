@@ -92,11 +92,32 @@ const decreaseAmount = (id) => {
 
 
 
+   function calculateDiscount(cart) {
+    if (cart.length >= 3) {
+      // Sort the cart items by price in ascending order
+      const sortedCart = [...cart].sort((a, b) => a.price - b.price);
+  
+      // Calculate the discount by summing the prices of the two cheapest items
+      const discount = sortedCart[0].price + sortedCart[1].price;
+  
+      // If the total is more than 1000 and there are more than 3 items in the cart, apply the discount
+      if (total >= 1000 && cart.length >= 3) {
+        return discount;
+      }
+    }
+    return 0;
+  }
+
+  
     return (
-    <CartContext.Provider value={{cart, addToCart, removeFromCart, clearCart, increaseAmount, decreaseAmount, itemAmount, total}}>
+    <CartContext.Provider value={{cart, addToCart, removeFromCart, clearCart, increaseAmount, decreaseAmount, itemAmount, total, calculateDiscount}}>
           {children}
     </CartContext.Provider>
     )
+    
 }
 
+
+
 export default CartProvider;
+

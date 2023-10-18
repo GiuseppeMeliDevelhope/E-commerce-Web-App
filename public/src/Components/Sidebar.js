@@ -9,9 +9,10 @@ import { useLocation } from "react-router-dom";
 
 function Sidebar() {
   const { isOpen, handleClose, handleOpen } = useContext(SidebarContext);
-  const { cart, clearCart, total, itemAmount } = useContext(CartContext);
+  const { cart, clearCart, total, itemAmount,calculateDiscount } = useContext(CartContext);
 
   const location = useLocation();
+  const discount = calculateDiscount(cart, total); 
 
   useEffect(() => {
     handleClose();
@@ -53,8 +54,14 @@ function Sidebar() {
           {/* total */}
           <div className="uppercase font-semibold">
             <span className="mr-2">Total:</span>
-            {parseFloat(total).toFixed(2)}€
+            {parseFloat(total-discount).toFixed(2)}€
           </div>
+          {discount > 0 && (
+            <div className="uppercase font-semibold">
+              <span className="mr-2">Discount:</span>
+              {parseFloat(discount).toFixed(2)}€
+            </div>
+          )}
           {/* clear cart icon */}
           <div
             onClick={clearCart}
