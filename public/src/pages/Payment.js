@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../Components/Loader";
-import { BsCreditCard, BsTruck } from "react-icons/bs";
+import { BsCreditCard, BsLock, BsTruck } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 function PaymentMethod() {
@@ -146,9 +146,11 @@ function PaymentMethod() {
             </div>
             
             <div>
+                <Link to="/finalpay">
               <button className="block w-full max-w-xs mx-auto bg-yellow-500 hover:bg-yellow-700 focus:bg-yellow-700 text-white rounded-lg px-3 py-3 font-semibold">
-                <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
+                    <BsLock className="absolute ml-[80px] mt-1 " /> PAY NOW
               </button>
+              </Link>
             </div>
           </div>
         </div>

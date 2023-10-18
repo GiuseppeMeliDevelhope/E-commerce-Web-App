@@ -84,7 +84,7 @@ function PaymentOnDelivery () {
               <div className="md:col-span-5 text-right mt-3">
                 <div className="inline-flex gap-3 items-end">
                 <Link  to="/checkout"><button className="bg-black hover:bg-white hover:text-black text-white font-bold py-2 px-4 rounded">Back</button></Link>
-                  <button className="bg-yellow-500  text-white font-bold py-2 px-4 rounded">Submit</button>
+                <Link to="/finalpay"> <button className="bg-yellow-500  text-white font-bold py-2 px-4 rounded">Submit</button></Link>
                 </div>
               </div>
              </div>

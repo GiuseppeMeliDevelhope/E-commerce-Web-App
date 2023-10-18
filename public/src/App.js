@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
@@ -7,11 +7,12 @@ import Sidebar from "./Components/Sidebar";
 import Footer from "./Components/Footer";
 import PaymentMethod from "./pages/Payment";
 import PaymentOnDelivery from "./pages/PaymentOnDelivery";
+import FinalPayment from "./pages/FinalPayment";
 
 
 
 function App() {
-
+  
 
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />}/>
           <Route path="/checkout" element={<PaymentMethod />}/>
           <Route path="/payment" element={<PaymentOnDelivery />}/>
+          <Route path="/finalpay" element={<FinalPayment />}/>
           
         
         </Routes>
