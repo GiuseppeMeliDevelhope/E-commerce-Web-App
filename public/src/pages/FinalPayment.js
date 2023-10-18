@@ -293,7 +293,6 @@ function FinalPayment() {
                       className="flex flex-col  justify-center h-[60px] rounded-lg  mb-4 p-2 border-[0.1px] "
                     >
                       <span>
-                        {" "}
                         {product.title}: {product.price}€
                       </span>
                     </div>
