@@ -107,7 +107,7 @@ function FinalPayment() {
                         </svg>
                       </a>
                       <span className="font-semibold text-gray-900">
-                        Shipping
+                        Payment
                       </span>
                     </li>
                     <svg
@@ -132,7 +132,7 @@ function FinalPayment() {
                         3
                       </a>
                       <span className="font-semibold text-gray-500">
-                        Payment
+                        Complete Order
                       </span>
                     </li>
                   </ul>

@@ -10,6 +10,13 @@ function Sidebar() {
   const { isOpen, handleClose } = useContext(SidebarContext);
   const { cart, clearCart, total, itemAmount } = useContext(CartContext);
 
+  const handleCheckout = () => {
+    if (cart.length === 0) {
+      window.alert("The cart is empty. Add items to your cart before checkout.");
+    }
+  };
+
+
   return (
     <div
       className={`${
@@ -47,7 +54,15 @@ function Sidebar() {
           </div>
         </div>
         <Link to="/" className="bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium">View cart</Link>
-        <Link to="checkout" className="bg-primary flex p-4 justify-center items-center text-white w-full font-medium">Checkout</Link>
+        <Link
+          to={cart.length === 0 ? "#" : "/checkout"}
+          className={`${
+            cart.length === 0 ? "bg-gray-500" : "bg-primary"
+          } flex p-4 justify-center items-center text-white w-full font-medium`}
+          onClick={handleCheckout}
+        >
+         Checkout
+         </Link>
       </div>
     </div>
   );

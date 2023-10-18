@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import ProductProvider from './Contexts/ProductContext';
 import SidebarProvider from './Contexts/SidebarContext';
-import CartProvider from './Contexts/CartContext';
+import CartProvider, { CartContext } from './Contexts/CartContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  
  <SidebarProvider>
   <CartProvider>
    <ProductProvider>
@@ -18,6 +19,7 @@ root.render(
   </ProductProvider>
   </CartProvider>
  </SidebarProvider>
+ 
 );
 
 

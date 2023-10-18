@@ -9,6 +9,7 @@ import PaymentMethod from "./pages/Payment";
 import PaymentOnDelivery from "./pages/PaymentOnDelivery";
 import FinalPayment from "./pages/FinalPayment";
 import ShippingCard from "./pages/ShippingCard";
+import CartProvider from "./Contexts/CartContext";
 
 
 
@@ -18,13 +19,14 @@ function App() {
   return (
     <>
     <div className="overflow-hidden">
+      <CartProvider>
       <Router>
         <Header />
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/product/:id" element={<ProductDetails />}/>
           <Route path="/checkout" element={<PaymentMethod />}/>
-          
+
           <Route path="/payment" element={<PaymentOnDelivery />}/>
           
           <Route path="/finalpay/:method" element={<FinalPayment />}/>
@@ -35,6 +37,8 @@ function App() {
         <Sidebar />
         <Footer />
       </Router>
+
+      </CartProvider>
 
     
     

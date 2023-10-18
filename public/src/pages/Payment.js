@@ -5,6 +5,26 @@ import { Link } from "react-router-dom";
 
 function PaymentMethod() {
   const [loading, setLoading] = useState(true);
+  const [fullName, setFullName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvc, setCVC] = useState("");
+ 
+
+
+  const handlePayNowClick = (e) => {
+    e.preventDefault();
+    if (!fullName || !cardNumber || !expirationDate || !cvc) {
+      alert("You must fill all the fields");
+    } else {
+      window.location.href = "/shipping"; 
+     
+    }
+  };
+  
+ 
+  
+
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 2000);
@@ -64,7 +84,7 @@ function PaymentMethod() {
                         2
                       </a>
                       <span className="font-semibold text-gray-900">
-                        Shipping
+                        Payment
                       </span>
                     </li>
                     <svg
@@ -84,7 +104,7 @@ function PaymentMethod() {
                     <li className="flex items-center space-x-3 text-left sm:space-x-4">
                     <a class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-400 text-xs font-semibold text-white" href="/">3</a>
                       <span className="font-semibold text-gray-500">
-                        Payment
+                        Complete Order
                       </span>
                     </li>
                   </ul>
@@ -179,6 +199,8 @@ function PaymentMethod() {
                   placeholder="Giuseppe Meli"
                   type="text"
                   required
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                 />
               </div>
             </div>
@@ -190,6 +212,8 @@ function PaymentMethod() {
                   placeholder="0000 0000 0000 0000"
                   type="text"
                   required
+                  value={cardNumber}
+                  onChange={(e) => setCardNumber(e.target.value)}
                 />
               </div>
             </div>
@@ -199,7 +223,8 @@ function PaymentMethod() {
                   Expiration date
                 </label>
                 <div>
-                  <input placeholder="06/27" className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-yellow-500 transition-colors cursor-pointer" >
+                  <input value={expirationDate}
+                  onChange={(e) => setExpirationDate(e.target.value)} placeholder="06/27" className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-yellow-500 transition-colors cursor-pointer" >
                    
                   </input>
                 </div>
@@ -215,6 +240,9 @@ function PaymentMethod() {
                   placeholder="000"
                   type="text"
                   required
+                  value={cvc}
+                  onChange={(e) => setCVC(e.target.value)}
+                
                 />
               </div>
             </div>
@@ -223,7 +251,7 @@ function PaymentMethod() {
             
             <div>
                 <Link to="/shipping">
-              <button className="block w-full max-w-xs mx-auto bg-yellow-500 hover:bg-yellow-700 focus:bg-yellow-700 text-white rounded-lg px-3 py-3 font-semibold">
+              <button  onClick={handlePayNowClick} className="block w-full max-w-xs mx-auto bg-yellow-500 hover:bg-yellow-700 focus:bg-yellow-700 text-white rounded-lg px-3 py-3 font-semibold">
                     <BsLock className="absolute ml-[80px] mt-1 " /> PAY NOW
               </button>
               </Link>
